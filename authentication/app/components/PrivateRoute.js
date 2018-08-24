@@ -1,11 +1,22 @@
 import React from "react"
-import { Route } from "react-router-dom"
+import { Route, Redirect } from "react-router-dom"
 import FakeAuth from "../utils/FakeAuth"
 
-class PrivateRoute extends React.Component {
-  render() {
-    return <div>This is a private route</div>
-  }
+const PrivateRoute = ({ component: Component, ...rest }) => {
+  return (
+    <Route
+      {...rest}
+      render={props =>
+        FakeAuth.isAuthenticated ? (
+          <Component {...props} />
+        ) : (
+          <Redirect
+            to={{ pathName: "/login", state: { from: props.location } }}
+          />
+        )
+      }
+    />
+  )
 }
 
 export default PrivateRoute
