@@ -1,11 +1,5 @@
 import React from "react"
-import {
-  BrowserRouter,
-  Route,
-  Link,
-  Redirect,
-  withRouter
-} from "react-router-dom"
+import { BrowserRouter, Route, Link } from "react-router-dom"
 import PrivateRoute from "./PrivateRoute"
 import Public from "./Public"
 import Protected from "./Protected"

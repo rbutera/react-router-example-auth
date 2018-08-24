@@ -1,23 +1,25 @@
 import React from "react"
-import { withRouter, Redirect } from "react-router-dom"
+import { withRouter, Redirect, Link } from "react-router-dom"
 import FakeAuth from "../utils/FakeAuth"
 
-const AuthButton = withRouter(({ history }) => {
-  return FakeAuth.isAuthenticated ? (
-    <div>
-      <h2>Welcome, User</h2>
-      <button
-        onClick={() => {
-          fakeAuth.signout(() => history.push("/"))
-        }}
-      >
-        Sign Out
-      </button>
-    </div>
-  ) : (
-    <p>
-      You must login in order to visit <span className="path">/Protected</span>
-    </p>
-  )
-})
+const AuthButton = withRouter(
+  ({ history }) =>
+    FakeAuth.isAuthenticated ? (
+      <p>
+        Welcome!{" "}
+        <button
+          onClick={() => {
+            FakeAuth.signout(() => history.push("/"))
+          }}
+        >
+          Sign out
+        </button>
+      </p>
+    ) : (
+      <p>
+        You are not logged in. You <Link to="/login">can Log In here</Link>
+      </p>
+    )
+)
+
 export default AuthButton

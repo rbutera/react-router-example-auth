@@ -1,11 +1,13 @@
 import React from "react"
+import { Redirect } from "react-router-dom"
+import FakeAuth from "../utils/FakeAuth"
 
 class Login extends React.Component {
   state = {
     redirectToReferrer: false
   }
   login = () => {
-    fakeAuth.authenticate(() => {
+    FakeAuth.authenticate(() => {
       this.setState({ redirectToReferrer: true })
     })
   }
@@ -14,8 +16,10 @@ class Login extends React.Component {
     const { redirectToReferrer } = this.state
 
     if (redirectToReferrer) {
+      console.info("Login: redirecting to referrer")
       return <Redirect to={from} />
     } else {
+      console.info("Login: displaying login button")
       return (
         <div>
           <p>
