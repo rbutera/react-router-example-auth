@@ -3,9 +3,6 @@ const common = require("./webpack.common.js")
 const BabelMinifyWebpackPlugin = require("babel-minify-webpack-plugin")
 
 module.exports = merge(common, {
-  mode: "production"
-},
-  plugins: [
-    new MinifyPlugin()
-  ]
-)
+  mode: "production",
+  plugins: [new MinifyPlugin()]
+})
